@@ -22,3 +22,11 @@ on the next version, we should create an agent that suggests
 2. new join paths (in case there is no join path betweem a joined entity and the main entity) 
 
 
+
+-- consider adding this, maybe not "before you start", but after you return the answer
+<before you start>
+if the question is too vague, return a follow up question and ask for clarifications
+
+-- on prompt 2, ask lynk tool for all the features on each of the entities we found we need. 
+and for each feature check if it might be relevant for the question and we might want to use it. 
+gather all these features and then ask yourself if changes and adjustments need to be done to the query, beyond replacing feature names

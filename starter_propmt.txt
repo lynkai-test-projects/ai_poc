@@ -132,7 +132,7 @@ The Semantic Layer is called Lynk Semantic Layer. You can assume the following:
 <expected from you to return>
 1. repeat the question we're answering
 2. the sql that we’re going to run
-3. which assumptions you have made while creating this query - address vague phrases the user used and the business logic you think we need to implement from your understanding of the question. if the question is too vague, return a follow up question 
+3. which business logic assumptions you have made while creating this query, specially related to vague phrases given by the user
 
 <the question>
-Are there specific regions or customer segments with higher adoption rates over the past year?
+Are there specific suppliers causing frequent delays or delivery issues?
