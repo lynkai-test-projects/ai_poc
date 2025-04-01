@@ -1,0 +1,31 @@
+Sample questions
+(see answers below)
+Adoption & Conversion
+1. Which product categories are most commonly purchased by new customers within their first month of becoming active?
+2. Which suppliers are most popular by new customers within their first month of becoming active?
+3. What percentage of first-time customers place a second order within 30 days (i.e., conversion from first to repeat purchase)?
+4. What is the average time between a customer’s registration (or first order) and their second purchase?
+5. Are there specific regions or customer segments with higher adoption rates over the past year?
+6. What proportion of leads (prospective customers from the customer table) actually convert into paying customers (those who appear in orders)?
+
+Churn & Retention
+7. Which customers have not placed an order in the last 6 months and can be considered ‘at risk’ or churned?
+8. What is the 3-month rolling retention rate of customers, by region?
+9. Is there a correlation between initial order value and long-term retention?
+10. How does customer retention vary between high-spending and low-spending customers?
+11. What is the average churn rate across all customer segments in the past year?
+
+Revenue & Profitability
+12. What are the top 10 customers by lifetime value (total revenue generated across all orders)?
+13. Which suppliers contribute the most to overall profit margins (factoring in lineitem.discount and lineitem.extendedprice)?
+14. How has revenue trended monthly over the past year? Are there seasonal patterns?
+15. What is the gross margin percentage across different product categories?
+16. What is the average discount applied per order, and how does this impact total revenue?
+
+Operational & Executive-Level Questions
+17. Which shipping methods (from lineitem.shipmode) have the best on-time delivery performance, and does that correlate with higher customer retention?
+18. How long does it typically take from order placement (orderdate) to delivery (receiptdate)?
+19. Are there specific suppliers causing frequent delays or delivery issues?
+20. Which regions generate the most revenue and show the highest growth in customer acquisition?
+21. What are the biggest risks and opportunities currently visible in customer behavior and revenue trends based on the last 12 months of data
+22. Give me the start date of the three consecutive days that users made the most purchases at.

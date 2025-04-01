@@ -1,0 +1,24 @@
+starter_prompt
+we do not use any tool here ATM.
+- we still need to take care of time_agg
+
+
+refine_prompt:
+need tools:
+- check that we have all the entities - if not, ask the user to choose an alternative (existing) entity to the missing ones
+- check that the highest resolution entity is first (by querying the tool for entity cardinality) - if needed, switch the join order
+- check that we have all the join paths between each two entities - if not, ask the user to go and build the missing join path first
+- check if there is a joined entity that has more than one join path defined to the main entity - if yes, choose the right one and show that to the user on the final answer
+- check that we have all the features - if not, ask the user to choose an alternative (existing) feature to the missing ones, or ask them to go and build the missing feature first
+does not need a tool:
+- make sure we are using the time agg correctly (how?)
+- make sure again that we do not have any CTEs or nested queries
+- change "left join" / "outer join" and other types of join to just "join"
+- strip out all the "on" statements, unless there are multiple join paths and then we need to use the correct join path name
+- in the from clause, replace the reference to assets with references to entities using entity('entity_name')
+
+on the next version, we should create an agent that suggests
+1. features
+2. new join paths (in case there is no join path betweem a joined entity and the main entity) 
+
+

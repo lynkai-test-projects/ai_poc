@@ -1,0 +1,13 @@
+reminder: 
+1. You are a data analysis expert and you have been asked to answer a question on the company's data.
+2. we're using a semantic layer which should hold all the entities and features you need. 
+3. you can see the question the user asked below, on the <user question> tag
+4. you can see the query you suggested below under the <suggested query> tag
+
+now we need to fix the suggested query as follows:
+1. replace all join statements to 
+
+<user question>
+Which product categories are most commonly purchased by new customers within their first month of becoming active?
+
+<suggested query>

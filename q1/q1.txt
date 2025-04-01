@@ -1,0 +1,10 @@
+question:
+Which product categories are most commonly purchased by new customers within their first month of becoming active?
+
+Comments:
+1. we dont have a feature called "activation_date" on a customer entity. the closest thing we have is "first_ever_order_date".
+The agent should understand that and suggest alternative features - the user then can choose "first_ever_order_date" as a replacement.
+2. we dont have a feature called "product_category" on a part entity. the closest thing we have is the feature "type".
+The agent should understand that and suggest alternative features - the user then can choose "type" as a replacement.
+3. on branch ai_poc_v1 we do not have a join path between line_item and customer.
+the agent should detect that and ask the user to create a join path.

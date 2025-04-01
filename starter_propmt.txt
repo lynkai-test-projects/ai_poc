@@ -1,0 +1,138 @@
+<intro>
+You are a data analysis expert and you have been asked to answer a question on the company's data.
+I will now give you the context and information you need in order to answer the question.
+
+<company description>
+We are a retail company, we were active during the 90's.
+
+<business entities>
+the business entities in our business are:
+
+- name: customer
+  description: 'a customer is a person in our system. not all customers necessarily placed an order. '
+  aliases:
+  - person
+  - user
+  - client
+
+- name: device
+  description: 'the device the user is using to connect to our system. It can be a mobile device or a computer. '
+
+- name: line_item
+  description: 'a line item is a product (or part) purchased on a specific order.'
+  aliases:
+  - order part
+
+- name: nation
+
+- name: order
+
+- name: part
+  description: 'a part is a product that customers can buy and suppliers supply.'
+  aliases:
+  - product
+
+- name: region
+
+- name: supplier
+
+
+<relationships between business entities>
+I am pasting here a yaml file with the relationship definitions on between each two business entities:
+
+relationships:
+  customer-device:
+    relationship: one_to_one
+    joins:
+    - name: default
+      default: true
+      type: sql
+      sql: '{source}.{customer_id} = {destination}.{customerid}'
+  customer-nation:
+    relationship: many_to_one
+    joins:
+    - name: default
+      default: true
+      type: fields
+      fields:
+      - source: nation_id
+        destination: nation_id
+        operator: equal
+  region-nation:
+    relationship: one_to_many
+    joins:
+    - name: default
+      default: true
+      type: fields
+      fields:
+      - source: region_id
+        destination: region_id
+        operator: equal
+  customer-order:
+    relationship: one_to_many
+    joins:
+    - name: default
+      default: true
+      type: sql
+      sql: '{source}.{customer_id} = {destination}.{customer_id}'
+  supplier-nation:
+    relationship: many_to_one
+    joins:
+    - name: default
+      default: true
+      sql: '{source}.{nation_id} = {destination}.{nation_id}'
+      type: sql
+  line_item-order:
+    relationship: many_to_one
+    joins:
+    - name: null
+      default: true
+      type: fields
+      fields:
+      - source: order_id
+        destination: order_id
+        operator: equal
+  line_item-supplier:
+    relationship: many_to_many
+    joins:
+    - name: null
+      default: true
+      type: fields
+      fields:
+      - source: supplier_id
+        destination: supplier_id
+        operator: equal
+  line_item-part:
+    relationship: many_to_one
+    joins:
+    - name: null
+      default: true
+      type: fields
+      fields:
+      - source: part_id
+        destination: part_id
+        operator: equal
+
+
+<assumptions you must make when approaching the task>
+Assume you have a semantic layer with all the entities, features and measures needed.
+I need you to create a select statement to answer that question. 
+
+As we're using a semantic layer with pre-defined entities, features, measures and relations, please make sure we follow the next rules:
+1. you cannot use any CTEs. You can assume that business logic you would normally do in CTEs already exists as features on entities in the semantic layer
+2. you cannot use and sub-queries
+3. when you write the sql query, you can use "left join" only. 
+4. the main entity should be the one with the highest level of granularity, put it first on the from cluase
+
+<Lynk Semantic Layer - what to expect and how to use it>
+The Semantic Layer is called Lynk Semantic Layer. You can assume the following:
+1. You have all the entities you need defined by names and aliases in the semantic layer
+2. Features are things we know about each entity.
+
+<expected from you to return>
+1. repeat the question we're answering
+2. the sql that we’re going to run
+3. which assumptions you have made while creating this query - address vague phrases the user used and the business logic you think we need to implement from your understanding of the question. if the question is too vague, return a follow up question 
+
+<the question>
+Are there specific regions or customer segments with higher adoption rates over the past year?

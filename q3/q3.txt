@@ -1,0 +1,8 @@
+question:
+What percentage of first-time customers place a second order within 30 days (i.e., conversion from first to repeat purchase)?
+
+comments: 
+
+1. we dont have a feature called "second_order_date" on a customer entity. 
+The agent should understand that and suggest alternative features.
+

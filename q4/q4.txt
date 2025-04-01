@@ -1,0 +1,3 @@
+question: 
+What is the average time between a customer’s registration (or first order) and their second purchase?
+

@@ -1,0 +1,6 @@
+question:
+Are there specific regions or customer segments with higher adoption rates over the past year?
+
+comments:
+- there is no feature on customer called "customer_segment"
+- there is no feature on customer called "recent_adoption_flag"
