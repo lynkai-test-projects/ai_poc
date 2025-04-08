@@ -1,0 +1,62 @@
+name: lineitem
+
+description: ''
+
+key_table: demo_dev.tpch_sf1.lineitem
+
+aliases: []
+
+features:
+- type: field
+  name: supplier_name
+  data_type: null
+  asset: supplier
+  join_name: null
+  time_field: null
+  filters: []
+  field: name
+- type: metric
+  name: count_part_brands
+  data_type: number
+  asset: part
+  join_name: parts
+  time_field: null
+  filters: []
+  measure: count_part_brands
+- type: metric
+  name: part_brands
+  data_type: number
+  asset: part
+  join_name: parts
+  time_field: null
+  filters: []
+  measure: part_brands
+
+related_assets:
+  demo_dev.tpch_sf1.orders:
+    relationship: many_to_one
+    joins:
+    - name: order_to_line
+      default: true
+      type: fields
+      fields:
+      - source: order_id
+        destination: order_id
+        operator: equal
+    - name: order_with_air_freight
+      default: false
+      type: sql
+      sql: '{source}.{order_id} = {destination}.{order_id} and {source}.{ship_mode} = "AIR"'
+  demo_dev.tpch_sf1.lineitem:
+    relationship: one_to_one
+    joins:
+    - name: lineitem_to_line_item
+      default: true
+      type: fields
+      fields:
+      - source: part_id
+        destination: part_id
+        operator: equal
+      - source: order_id
+        destination: order_id
+        operator: equal

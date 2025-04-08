@@ -1,0 +1,11 @@
+entity: part
+
+defaults: null
+
+measures:
+- name: count_part_brands
+  description: ''
+  sql: count(distinct {brand})
+- name: part_brands
+  description: ''
+  sql: count(1)

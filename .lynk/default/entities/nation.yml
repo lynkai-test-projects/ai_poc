@@ -1,0 +1,49 @@
+name: nation
+
+description: ''
+
+key_table: demo_dev.tpch_sf1.nation
+
+aliases: []
+
+features:
+- type: field
+  name: region_name
+  data_type: string
+  asset: region
+  join_name: all_region_nations
+  time_field: null
+  filters: []
+  field: name
+
+related_assets:
+  demo_dev.tpch_sf1.nation:
+    relationship: one_to_one
+    joins:
+    - name: all_nations
+      default: true
+      type: fields
+      fields:
+      - source: nation_id
+        destination: nation_id
+        operator: equal
+  demo_dev.tpch_sf1.region:
+    relationship: many_to_one
+    joins:
+    - name: all_regions
+      default: true
+      type: fields
+      fields:
+      - source: region_id
+        destination: region_id
+        operator: equal
+  demo_dev.tpch_sf1.customer:
+    relationship: one_to_many
+    joins:
+    - name: all_customers
+      default: true
+      type: fields
+      fields:
+      - source: nation_id
+        destination: nation_id
+        operator: equal

@@ -1,0 +1,37 @@
+name: device
+
+description: ''
+
+key_table: demo_dev.tpch_sf1.device
+
+aliases: []
+
+features:
+- type: metric
+  data_type: null
+  asset: demo_dev.tpch_sf1.device
+  filters: []
+  name: devices_entity
+  measure: count_devices
+
+related_assets:
+  demo_dev.tpch_sf1.customer:
+    relationship: one_to_one
+    joins:
+    - name: all_customers
+      default: true
+      type: fields
+      fields:
+      - source: customerid
+        destination: customer_id
+        operator: equal
+  demo_dev.tpch_sf1.device:
+    relationship: one_to_one
+    joins:
+    - name: all_devices
+      default: true
+      type: fields
+      fields:
+      - source: id
+        destination: id
+        operator: equal

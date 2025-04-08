@@ -1,0 +1,110 @@
+name: order
+
+description: ''
+
+key_table: demo_dev.tpch_sf1.orders
+
+aliases: []
+
+features:
+- type: metric
+  name: count_lines
+  data_type: null
+  asset: demo_dev.tpch_sf1.lineitem
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_lines
+- type: field
+  name: order_priority
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  field: order_priority
+- type: field
+  name: created_at_date
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  field: dateadd(day, 8, order_date)
+- type: metric
+  name: extended_price
+  data_type: null
+  asset: demo_dev.tpch_sf1.lineitem
+  join_name: null
+  time_field: null
+  filters: []
+  measure: extended_price
+- type: metric
+  name: lines_quantity_entity
+  data_type: null
+  asset: lineitem
+  join_name: null
+  time_field: receipt_date
+  filters: []
+  measure: lines_quantity_entity
+- type: metric
+  name: count_suppliers_entity
+  data_type: null
+  asset: lineitem
+  join_name: null
+  time_field: commit_date
+  filters: []
+  measure: count_suppliers_entity
+- type: metric
+  name: total_selections
+  data_type: null
+  asset: demo_dev.tpch_sf1.lineitem
+  join_name: null
+  time_field: commit_date
+  filters: []
+  measure: count_lines
+- type: formula
+  data_type: string
+  name: is_active_user
+  sql: case when {count_lines} > 0 then true else false end
+  features:
+  - feature: count_lines
+    alias: null
+- type: metric
+  name: count_part_brands
+  data_type: number
+  asset: lineitem
+  join_name: order_lineitem
+  time_field: null
+  filters: []
+  measure: count_part_brands
+- type: metric
+  name: part_brands_orders
+  data_type: number
+  asset: lineitem
+  join_name: order_lineitem
+  time_field: null
+  filters: []
+  measure: part_brands_orders
+
+related_assets:
+  demo_dev.tpch_sf1.lineitem:
+    relationship: one_to_many
+    joins:
+    - name: all_line_items
+      default: true
+      type: fields
+      fields:
+      - source: order_id
+        destination: order_id
+        operator: equal
+  demo_dev.tpch_sf1.orders:
+    relationship: one_to_one
+    joins:
+    - name: all_orders
+      default: true
+      type: fields
+      fields:
+      - source: order_id
+        destination: order_id
+        operator: equal

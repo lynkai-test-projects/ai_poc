@@ -1,0 +1,8 @@
+entity: customer
+
+defaults: null
+
+measures:
+- name: distinct_customers_from_asset
+  description: ''
+  sql: count(distinct {customer_id})

@@ -1,0 +1,9 @@
+asset: demo_dev.tpch_sf1.region
+
+business_keys:
+- region_id
+
+keys:
+- region_id
+
+description: ''

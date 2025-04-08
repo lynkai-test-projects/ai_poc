@@ -1,0 +1,68 @@
+name: region
+
+description: ''
+
+key_table: demo_dev.tpch_sf1.region
+
+aliases: []
+
+features:
+- type: metric
+  data_type: null
+  asset: demo_dev.tpch_sf1.customer
+  filters: []
+  name: count_customers
+  measure: count_customers
+- type: metric
+  data_type: null
+  asset: demo_dev.tpch_sf1.customer
+  filters: []
+  name: count_distinct_customers
+  measure: count_distinct_customers
+- type: metric
+  data_type: null
+  asset: customer
+  filters: []
+  name: distinct_customers_from_asset
+  measure: distinct_customers_from_asset
+
+related_assets:
+  demo_dev.tpch_sf1.region:
+    relationship: one_to_one
+    joins:
+    - name: all_regions
+      default: true
+      type: fields
+      fields:
+      - source: region_id
+        destination: region_id
+        operator: equal
+  demo_dev.tpch_sf1.nation:
+    relationship: one_to_many
+    joins:
+    - name: all_nations
+      default: true
+      type: fields
+      fields:
+      - source: region_id
+        destination: region_id
+        operator: equal
+  demo_dev.tpch_sf1.customer:
+    relationship: one_to_many
+    joins:
+    - name: all_customers
+      default: true
+      type: lookup
+      lookup:
+      - destination: demo_dev.tpch_sf1.nation
+        type: fields
+        fields:
+        - source: region_id
+          destination: region_id
+          operator: equal
+      - destination: demo_dev.tpch_sf1.customer
+        type: fields
+        fields:
+        - source: nation_id
+          destination: nation_id
+          operator: equal

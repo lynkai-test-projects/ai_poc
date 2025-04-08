@@ -1,0 +1,8 @@
+dim_dates:
+  ref: demo_dev.TPCH_SF1.dim_dates
+  fields:
+    day: date_day
+    week: date_week
+    month: date_month
+    quarter: date_quarter
+    year: date_year

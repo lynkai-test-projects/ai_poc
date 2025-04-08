@@ -1,0 +1,14 @@
+asset: demo_dev.tpch_sf1.device
+
+key: []
+
+business_keys: 
+- id
+
+keys: 
+- id
+
+measures:
+- name: count_devices
+  description: ''
+  sql: count(*)

@@ -1,0 +1,647 @@
+name: customer
+
+description: nice desc
+
+key_table: demo_dev.tpch_sf1.customer
+
+aliases: []
+
+features:
+- type: metric
+  name: orders_amount
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  measure: orders_amount
+- type: metric
+  name: count_orders
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_orders
+- type: metric
+  name: count_devices
+  data_type: null
+  asset: demo_dev.tpch_sf1.device
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_devices
+- type: metric
+  name: count_orders_test
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_orders
+- type: metric
+  name: total_orders_with_alias
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_orders
+- type: metric
+  name: number_of_lines
+  data_type: null
+  asset: demo_dev.tpch_sf1.lineitem
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_lines
+- type: metric
+  name: number_of_lines_join_name
+  data_type: null
+  asset: demo_dev.tpch_sf1.lineitem
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_lines
+- type: first_last
+  name: comment
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  options:
+    method: last
+    sort_by: order_date
+    field: comment
+    data_type: null
+- type: first_last
+  name: order_date_by_last_comment
+  data_type: null
+  asset: order
+  join_name: null
+  time_field: null
+  filters: []
+  options:
+    method: last
+    sort_by: comment
+    field: order_date
+    data_type: null
+- type: first_last
+  name: order_date_by_last_priority
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  options:
+    method: last
+    sort_by: order_priority
+    field: order_date
+    data_type: null
+- type: first_last
+  name: comment_first_order
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  options:
+    method: first
+    sort_by: order_date
+    field: comment
+    data_type: null
+- type: first_last
+  name: comment_third_order
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  options:
+    offset: 3
+    method: first
+    sort_by: order_date
+    field: comment
+    data_type: null
+- type: field
+  name: nation_name
+  data_type: null
+  asset: nation
+  join_name: null
+  time_field: null
+  filters: []
+  field: name
+- type: field
+  name: nation_name_new
+  data_type: null
+  asset: demo_dev.tpch_sf1.nation
+  join_name: null
+  time_field: null
+  filters: []
+  field: name
+- type: field
+  name: device_id
+  data_type: null
+  asset: demo_dev.tpch_sf1.device
+  join_name: null
+  time_field: null
+  filters: []
+  field: id
+- type: field
+  name: device_type
+  data_type: null
+  asset: demo_dev.tpch_sf1.device
+  join_name: null
+  time_field: null
+  filters: []
+  field: type
+- type: field
+  name: used_device
+  data_type: null
+  asset: device
+  join_name: null
+  time_field: null
+  filters: []
+  field: type
+- type: metric
+  name: orders_amount_high_priority
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: order_priority
+    operator: is
+    values:
+    - 1-URGENT
+    - 2-HIGH
+  measure: orders_amount
+- type: metric
+  name: count_orders_2_filters
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: order_status
+    operator: is
+    values:
+    - O
+  measure: count_orders
+- type: first_last
+  name: order_id_last_priority_filter
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: order_status
+    operator: is
+    values:
+    - O
+  options:
+    method: last
+    sort_by: order_priority
+    field: order_id
+    data_type: null
+- type: metric
+  name: total_amount_date_filter
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: order_date
+    operator: between
+    values:
+    - '1994-12-02T23:00:00.000Z'
+    - '1995-12-02T23:00:00.000Z'
+  measure: orders_amount
+# - type: metric
+#   name: total_amount_number_filter
+#   data_type: null
+#   asset: demo_dev.tpch_sf1.orders
+#   join_name: null
+#   time_field: null
+#   filters:
+#   - type: field
+#     field: total_price
+#     operator: gt
+#     values:
+#     - 1000
+- type: metric
+  name: orders_amount_with_same_priority_sql_filter
+  data_type: null
+  asset: order
+  join_name: null
+  time_field: null
+  filters:
+  - type: sql
+    sql: "{asset}.{count_lines} > 5000"
+  measure: total_lines
+- type: metric
+  name: sql_filter_two_asset_fields
+  data_type: null
+  asset: order
+  join_name: null
+  time_field: null
+  filters:
+  - type: sql
+    sql: "CAST(LEFT({asset}.{order_priority}, POSITION('-' IN {asset}.{order_priority}) - 1) AS INTEGER) 
+    = {asset}.{ship_priority}"
+  measure: total_lines
+- type: field
+  name: device_not_windows
+  data_type: null
+  asset: demo_dev.tpch_sf1.device
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: type
+    operator: is_not
+    values:
+    - windows
+  field: type
+- type: metric
+  name: total_orders_2_filters
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: order_date
+    operator: gt
+    values:
+    - '1997-12-03T23:00:00.000Z'
+  - type: field
+    field: total_price
+    operator: gt
+    values:
+    - 300
+  measure: orders_amount
+- type: metric
+  name: count_orders_gte_500
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: total_price
+    operator: gt
+    values:
+    - 500
+  measure: count_orders
+- type: metric
+  name: count_orders_with_no_priority
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters:
+  - type: field
+    field: order_priority
+    operator: is_not_set
+    values: null
+  measure: count_orders
+- type: formula
+  data_type: null
+  name: formula_orders_amount
+  sql: '{orders_amount}'
+  features:
+  - feature: orders_amount
+    alias: null
+- type: formula
+  data_type: null
+  name: avg_order_amount
+  sql: '{orders_amount} / {count_orders}'
+  features:
+  - feature: orders_amount
+    alias: null
+  - feature: count_orders
+    alias: null
+- type: formula
+  data_type: null
+  name: formula_with_alias
+  sql: '{orders_amount} / {orders_per_customer}'
+  features:
+  - feature: orders_amount
+    alias: null
+  - feature: count_orders
+    alias: orders_per_customer
+- type: formula
+  data_type: null
+  name: formula_with_filters
+  sql: '{orders_amount_high_priority} / {count_orders_2_filters}'
+  features:
+  - feature: orders_amount_high_priority
+    alias: null
+  - feature: count_orders_2_filters
+    alias: null
+- type: metric
+  name: regist_date
+  data_type: null
+  asset: demo_dev.tpch_sf1.orders
+  join_name: null
+  time_field: null
+  filters: []
+  measure: reg_date
+- type: formula
+  data_type: null
+  name: greatest_date_for_anchor
+  sql: greatest({regist_date}, {order_date_by_last_comment})
+  features:
+  - feature: order_date_by_last_comment
+    alias: null
+  - feature: regist_date
+    alias: null
+- type: field
+  name: region_name
+  data_type: null
+  asset: region
+  join_name: null
+  time_field: null
+  filters: []
+  field: name
+- type: metric
+  name: test1
+  data_type: null
+  asset: region
+  join_name: null
+  time_field: null
+  filters: []
+  measure: test1
+- type: formula
+  data_type: null
+  name: formula_test_alias
+  sql: '{orders_amount} / {devices_per_customer}'
+  features:
+  - feature: orders_amount
+    alias: null
+  - feature: count_devices
+    alias: devices_per_customer
+- type: metric
+  name: lines_gte_100
+  data_type: null
+  asset: demo_dev.tpch_sf1.lineitem
+  join_name: null
+  time_field: commit_date
+  filters:
+  - type: field
+    field: extended_price
+    operator: gt
+    values:
+    - 100
+  measure: count_lines
+- type: first_last
+  name: first_region_name_comment
+  data_type: null
+  asset: region
+  join_name: null
+  time_field: null
+  filters: []
+  options:
+    method: first
+    sort_by: name
+    field: comment
+    data_type: null
+- type: formula
+  data_type: null
+  name: formula_test_e_e_lookup
+  sql: '{orders_amount}/{test1}'
+  features:
+  - feature: orders_amount
+    alias: null
+  - feature: test1
+    alias: null
+- type: metric
+  name: total_lines
+  data_type: null
+  asset: order
+  join_name: null
+  time_field: null
+  filters: []
+  measure: total_lines
+# - type: field
+#   name: device_type_entity
+#   data_type: null
+#   asset: device
+#   join_name: null
+#   time_field: null
+#   filters:
+#   - type: field
+#     field: id
+#     operator: is
+#     values:
+#     - 123
+  field: type
+- type: metric
+  name: count_orders_entity
+  data_type: null
+  asset: order
+  join_name: null
+  time_field: null
+  filters: []
+  measure: count_orders_entity
+- type: formula
+  data_type: null
+  name: mixed_formula
+  sql: '{orders_amount} / {count_orders_entity}'
+  features:
+  - feature: orders_amount
+    alias: null
+  - feature: count_orders_entity
+    alias: null
+- type: metric
+  name: total_price_entity
+  data_type: null
+  asset: order
+  join_name: null
+  time_field: null
+  filters: []
+  measure: total_price_entity
+- type: formula
+  data_type: null
+  name: two_entities_formula
+  sql: '{total_price_entity} / {count_orders_entity}'
+  features:
+  - feature: count_orders_entity
+    alias: null
+  - feature: total_price_entity
+    alias: null
+- type: first_last
+  name: supplier_name_first_ship_entity
+  data_type: null
+  asset: lineitem
+  join_name: null
+  time_field: null
+  filters: []
+  options:
+    method: first
+    sort_by: ship_date
+    field: supplier_name
+    data_type: null
+- type: metric
+  name: new_orders
+  data_type: number
+  asset: order
+  join_name: all_customer_orders
+  time_field: created_at_date
+  filters: []
+  measure: laila_test_2
+- type: metric
+  name: total_active_users
+  data_type: number
+  asset: order
+  join_name: all_customer_orders
+  time_field: null
+  filters: []
+  measure: total_active_users
+- type: metric
+  name: total_selections
+  data_type: number
+  asset: order
+  join_name: all_customer_orders
+  time_field: null
+  filters: []
+  measure: total_selections
+- type: metric
+  name: total_selecting_users
+  data_type: number
+  asset: order
+  join_name: all_customer_orders
+  time_field: null
+  filters: []
+  measure: total_selecting_users
+- type: metric
+  name: lines_quantity_entity
+  data_type: number
+  asset: order
+  join_name: all_customer_orders
+  time_field: null
+  filters: []
+  measure: lines_quantity_entity
+- type: metric
+  name: count_part_brands
+  data_type: number
+  asset: order
+  join_name: all_customer_orders
+  time_field: null
+  filters: []
+  measure: count_part_brands
+- type: metric
+  name: part_brands_cust
+  data_type: number
+  asset: order
+  join_name: all_customer_orders
+  time_field: null
+  filters: []
+  measure: part_brands_cust
+
+related_assets:
+  demo_dev.tpch_sf1.customer:
+    relationship: one_to_one
+    joins:
+    - name: all_customers
+      default: true
+      type: fields
+      fields:
+      - source: customer_id
+        destination: customer_id
+        operator: equal
+  demo_dev.tpch_sf1.orders:
+    relationship: one_to_many
+    joins:
+    - name: all_orders
+      default: true
+      type: fields
+      fields:
+      - source: customer_id
+        destination: customer_id
+        operator: equal
+    - name: gte_500_orders
+      default: false
+      type: sql
+      sql: '{source}.{customer_id} = {destination}.{customer_id} and {source}.{customer_id}
+        > {destination}.{order_id}'
+  demo_dev.tpch_sf1.device:
+    relationship: one_to_one
+    joins:
+    - name: all_devices
+      default: true
+      type: fields
+      fields:
+      - source: customer_id
+        destination: customerid
+        operator: equal
+  demo_dev.tpch_sf1.nation:
+    relationship: many_to_one
+    joins:
+    - name: all_nations
+      default: true
+      type: sql
+      sql: '{source}.{nation_id} = {destination}.{nation_id}'
+  demo_dev.tpch_sf1.lineitem:
+    relationship: one_to_many
+    joins:
+    - name: all_lineitems
+      default: true
+      type: lookup
+      lookup:
+      - destination: demo_dev.tpch_sf1.orders
+        type: fields
+        fields:
+        - source: customer_id
+          destination: customer_id
+          operator: equal
+      - destination: demo_dev.tpch_sf1.lineitem
+        type: fields
+        fields:
+        - source: order_id
+          destination: order_id
+          operator: equal
+    - name: lineitems_related
+      default: false
+      type: lookup
+      lookup:
+      - destination: demo_dev.tpch_sf1.orders
+        type: fields
+        fields:
+        - source: customer_id
+          destination: customer_id
+          operator: equal
+      - destination: demo_dev.tpch_sf1.lineitem
+        type: fields
+        fields:
+        - source: order_id
+          destination: order_id
+          operator: equal
+        - source: order_date
+          destination: commit_date
+          operator: lte
+  demo_dev.tpch_sf1.region:
+    relationship: one_to_many
+    joins:
+    - name: related_regions
+      default: true
+      type: lookup
+      lookup:
+      - destination: demo_dev.tpch_sf1.nation
+        type: fields
+        fields:
+        - source: nation_id
+          destination: nation_id
+          operator: equal
+      - destination: demo_dev.tpch_sf1.region
+        type: fields
+        fields:
+        - source: region_id
+          destination: region_id
+          operator: equal

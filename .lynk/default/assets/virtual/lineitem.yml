@@ -1,0 +1,17 @@
+entity: lineitem
+
+defaults: null
+
+measures:
+- name: lines_quantity_entity
+  description: ''
+  sql: sum({quantity})
+- name: count_suppliers_entity
+  description: ''
+  sql: count(distinct {supplier_id})
+- name: count_part_brands
+  description: ''
+  sql: sum({count_part_brands})
+- name: part_brands_orders
+  description: ''
+  sql: sum({part_brands})

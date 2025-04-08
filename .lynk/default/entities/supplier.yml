@@ -1,0 +1,32 @@
+name: supplier
+
+description: ''
+
+key_table: demo_dev.tpch_sf1.supplier
+
+aliases: []
+
+features: []
+
+related_assets:
+  demo_dev.tpch_sf1.supplier:
+    relationship: one_to_one
+    joins:
+    - name: all_suppliers
+      default: true
+      type: fields
+      fields:
+      - source: supplier_id
+        destination: supplier_id
+        operator: equal
+
+  demo_dev.tpch_sf1.partsupp:
+    relationship: one_to_many
+    joins:
+    - name: all_part_suppliers
+      default: true
+      type: fields
+      fields:
+      - source: supplier_id
+        destination: supplier_id
+        operator: equal

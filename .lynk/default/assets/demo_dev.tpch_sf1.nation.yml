@@ -1,0 +1,14 @@
+asset: demo_dev.tpch_sf1.nation
+
+business_keys: 
+- nation_id
+
+keys: 
+- nation_id
+
+description: ''
+
+measures:
+- name: count_measures_test
+  description: ''
+  sql: count(1)

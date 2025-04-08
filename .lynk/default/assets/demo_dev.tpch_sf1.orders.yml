@@ -1,0 +1,26 @@
+asset: demo_dev.tpch_sf1.orders
+
+business_keys:
+- order_id
+
+keys:
+- order_id
+
+description: ''
+
+defaults:
+  time_field: order_date
+
+measures:
+- name: count_orders
+  description: ''
+  sql: count(*)
+- name: orders_amount
+  description: ''
+  sql: sum({total_price})
+- name: is_priority_order
+  description: ''
+  sql: case when {priority} = '2-HIGH' then true else false end
+- name: reg_date
+  description: ''
+  sql: min({order_date})

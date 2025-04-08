@@ -1,0 +1,117 @@
+relationships:
+  customer-device:
+    relationship: one_to_one
+    joins:
+    - name: all_customer_devices
+      default: true
+      type: sql
+      sql: '{source}.{customer_id} = {destination}.{customerid}'
+  customer-nation:
+    relationship: many_to_one
+    joins:
+    - name: all_customer_nations
+      default: true
+      type: fields
+      fields:
+      - source: nation_id
+        destination: nation_id
+        operator: equal
+  region-nation:
+    relationship: one_to_many
+    joins:
+    - name: all_region_nations
+      default: true
+      type: fields
+      fields:
+      - source: region_id
+        destination: region_id
+        operator: equal
+  customer-order:
+    relationship: one_to_many
+    joins:
+    - name: all_customer_orders
+      default: true
+      type: sql
+      sql: '{source}.{customer_id} = {destination}.{customer_id}'
+  supplier-nation:
+    relationship: many_to_one
+    joins:
+    - name: all_supplier_nations
+      default: true
+      type: sql
+      sql: '{source}.{nation_id} = {destination}.{nation_id}'
+  customer-region:
+    relationship: many_to_one
+    joins:
+    - name: all_customer_regions_sql_joins
+      default: true
+      type: lookup
+      lookup:
+      - destination: demo_dev.tpch_sf1.nation
+        type: sql
+        sql: '{destination}.{nation_id} = {source}.{nation_id}'
+      - destination: region
+        type: fields
+        fields:
+        - source: region_id
+          destination: region_id
+          operator: equal
+  lineitem-order:
+    relationship: many_to_one
+    joins:
+    - name: order_lineitem
+      default: true
+      type: fields
+      fields:
+      - source: order_id
+        destination: order_id
+        operator: equal
+    - name: lines_commited_on_order_date
+      default: false
+      type: fields
+      fields:
+      - source: commit_date
+        destination: order_date
+        operator: equal
+      - source: order_id
+        destination: order_id
+        operator: equal
+  lineitem-supplier:
+    relationship: many_to_one
+    joins:
+    - name: suppliers
+      default: true
+      type: fields
+      fields:
+      - source: supplier_id
+        destination: supplier_id
+        operator: equal
+  lineitem-part:
+    relationship: one_to_many
+    joins:
+    - name: parts
+      default: true
+      type: fields
+      fields:
+      - source: part_id
+        destination: part_id
+        operator: equal
+  customer-lineitem:
+    relationship: one_to_many
+    joins:
+    - name: cust_lines
+      default: true
+      type: lookup
+      lookup:
+      - destination: demo_dev.tpch_sf1.orders
+        type: fields
+        fields:
+        - source: customer_id
+          destination: customer_id
+          operator: equal
+      - destination: lineitem
+        type: fields
+        fields:
+        - source: order_id
+          destination: order_id
+          operator: equal

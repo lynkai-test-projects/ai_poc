@@ -1,0 +1,17 @@
+asset: demo_dev.tpch_sf1.customer
+
+business_keys: 
+- customer_id
+
+keys:
+- customer_id
+
+description: ''
+
+measures:
+- name: count_customers
+  description: ''
+  sql: count(*)
+- name: count_distinct_customers
+  description: ''
+  sql: count(distinct {customer_id})

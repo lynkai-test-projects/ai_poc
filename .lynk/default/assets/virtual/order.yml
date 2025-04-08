@@ -1,0 +1,35 @@
+entity: order
+
+defaults: null
+
+measures:
+- name: total_lines
+  description: ''
+  sql: sum({count_lines})
+- name: count_orders_entity
+  description: ''
+  sql: count(distinct {order_id})
+- name: total_price_entity
+  description: ''
+  sql: sum({total_price})
+- name: laila_test_2
+  description: ''
+  sql: count(2)
+- name: total_active_users
+  description: ''
+  sql: count(distinct case when {is_active_user} then {order_id} else null end)
+- name: total_selections
+  description: ''
+  sql: sum({total_selections})
+- name: total_selecting_users
+  description: ''
+  sql: count(distinct case when {total_selections} > 0 then {order_id} else null end)
+- name: lines_quantity_entity
+  description: ''
+  sql: sum({lines_quantity_entity})
+- name: count_part_brands
+  description: ''
+  sql: sum({count_part_brands})
+- name: part_brands_cust
+  description: ''
+  sql: sum({part_brands_orders})
